@@ -38,17 +38,32 @@ Ollama `/api/generate` ishlatadi (`/api/chat` emas). Timeout: 120s.
 
 SSE format: `data: {"token": "..."}` ... `data: [DONE]`
 
+## Benchmark natijalari (Ollama vs vLLM)
+
+Bir xil model: `gemma3:1b` (778 MB GGUF), ikkalasi ham GPU da
+
+| Tizim | TTFT | Jami | Tok/s |
+|---|---|---|---|
+| Ollama | 0.51s | 1.28s | 29.8 |
+| vLLM | 0.05s | 1.01s | 99.1 |
+
+vLLM: 10x tezroq TTFT, 3.3x ko'p tok/s.
+
+`benchmark.py` — navbatma-navbat (biri to'xtatilganda ikkinchisi ishga tushadi, VRAM uchun).
+vLLM: `--quantization gguf --max-num-seqs 4 --max-model-len 512`, port 8001.
+Izoh: `gemma4` vLLM da qo'llab-quvvatlanmaydi (yangi arxitektura).
+
 ## Hozirgi holat
 
-Keyingi qadam: **Bosqich 4 — Benchmark Ollama vs vLLM**
+Keyingi qadam: **Bosqich 5 — RAG tizimi**
 
 ## Road Map
 
 - Bosqich 1: Muhit sozlash ✅
 - Bosqich 2: FastAPI + `/chat` endpoint ✅
 - Bosqich 3: Streaming (SSE) ✅
-- Bosqich 4: Benchmark Ollama vs vLLM ← hozir shu yerda
-- Bosqich 5: RAG tizimi
+- Bosqich 4: Benchmark Ollama vs vLLM ✅ (vLLM 44x tez TTFT, 7x ko'p tok/s)
+- Bosqich 5: RAG tizimi ← keyingi qadam
 
 ## Qoidalar
 
