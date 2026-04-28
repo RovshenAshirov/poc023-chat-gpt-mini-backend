@@ -978,4 +978,5 @@ VRAM            → GPU xotirasi (bizda 4GB)
 
  - [Step 1. Muhitni Sozlash](step-1.md)  
  - [Step 2. Ollama + Chat](step-2.md)  
- - [Step 3. FastAPI + Steaming + UI](step-2.md)  
+ - [Step 3. FastAPI + Steaming + UI](step-3.md)  
+ - [Step 3. Benchmark: Ollama vs. vLLM](step-4.md)  
