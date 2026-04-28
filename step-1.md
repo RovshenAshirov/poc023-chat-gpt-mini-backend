@@ -59,12 +59,12 @@ ollama --version
 ### gemma3:1b — asosiy model (GPU da ishlaydi)
 
 ```bash
-ollama pull gemma3:1b
+ollama pull gemma3:4b
 ```
 
-| Model | Hajm | VRAM | Qurilma |
-|-------|------|------|---------|
-| gemma3:1b | 778 MB | ~1 GB | GPU ✅ |
+| Model      | Hajm   | VRAM   | Qurilma |
+|------------|--------|--------|---------|
+| gemma3:4b  | 3.3 GB | 3.3 GB | GPU ✅ |
 | gemma4:e4b | 9.6 GB | 9.6 GB | CPU ⚠️ (sig'maydi) |
 
 ---
@@ -72,7 +72,7 @@ ollama pull gemma3:1b
 ## 5. Model ishlayaptimi?
 
 ```bash
-ollama run gemma3:1b "Salom, kim san?"
+ollama run gemma3:4b "Salom, kim san?"
 ```
 
 ---

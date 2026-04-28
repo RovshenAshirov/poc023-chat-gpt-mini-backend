@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>POC-023 Chat</title>
+    <style>
+        body { font-family: sans-serif; max-width: 800px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h2 { color: #333; }
+        #messages { background: white; border-radius: 8px; padding: 20px; min-height: 300px; margin-bottom: 16px; border: 1px solid #ddd; }
+        .user { color: #1a73e8; margin: 8px 0; }
+        .bot { color: #333; margin: 8px 0; white-space: pre-wrap; }
+        #input-area { display: flex; gap: 8px; }
+        #prompt { flex: 1; padding: 10px; border-radius: 6px; border: 1px solid #ddd; font-size: 15px; }
+        button { padding: 10px 20px; background: #1a73e8; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 15px; }
+        button:disabled { background: #aaa; }
+    </style>
+</head>
+<body>
+    <h2>🤖 POC-023 — Local LLM Chat</h2>
+    <div id="messages"></div>
+    <div id="input-area">
+        <input id="prompt" type="text" placeholder="Savol yozing..." />
+        <button id="btn" onclick="sendMessage()">Yuborish</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const input = document.getElementById("prompt");
+            const btn = document.getElementById("btn");
+            const messages = document.getElementById("messages");
+            const text = input.value.trim();
+            if (!text) return;
+
+            messages.innerHTML += `<div class="user">👤 ${text}</div>`;
+            input.value = "";
+            btn.disabled = true;
+
+            const botDiv = document.createElement("div");
+            botDiv.className = "bot";
+            botDiv.textContent = "🤖 ";
+            messages.appendChild(botDiv);
+
+            const response = await fetch("/chat/stream", {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({prompt: text})
+            });
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder();
+
+            while (true) {
+                const {done, value} = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value);
+                const lines = chunk.split("\n");
+                for (const line of lines) {
+                    if (line.startsWith("data: ") && line !== "data: [DONE]") {
+                        try {
+                            const data = JSON.parse(line.slice(6));
+                            botDiv.textContent += data.token;
+                            messages.scrollTop = messages.scrollHeight;
+                        } catch {}
+                    }
+                }
+            }
+            btn.disabled = false;
+        }
+
+        document.getElementById("prompt").addEventListener("keypress", function(e) {
+            if (e.key === "Enter") sendMessage();
+        });
+    </script>
+</body>
+</html>

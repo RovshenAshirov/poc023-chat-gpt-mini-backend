@@ -839,8 +839,8 @@ Ollama = Django development server (manage.py runserver)
 ```
  
 ```bash
-ollama pull gemma3:1b   # yuklab olish
-ollama run  gemma3:1b   # ishga tushirish
+ollama pull gemma3:4b   # yuklab olish
+ollama run  gemma3:4b   # ishga tushirish
 ollama list             # yuklangan modellar
 ```
  
@@ -927,7 +927,7 @@ Qancha ko'p → aqlli, lekin ko'p VRAM kerak.
 ┌─────────────────────────────────────────────────┐
 │  Hardware                                       │
 │  ├── CPU  → Ollama (gemma4:e4b CPU da) 😐       │
-│  └── GPU  → vLLM  (gemma3:1b GPU da) 🚀        │
+│  └── GPU  → vLLM  (gemma3:4b GPU da) 🚀        │
 │             └── CUDA (ko'prik)                  │
 └─────────────────────────────────────────────────┘
 ```
@@ -977,4 +977,5 @@ VRAM            → GPU xotirasi (bizda 4GB)
 ## 24. Amaliyotlar
 
  - [Step 1. Muhitni Sozlash](step-1.md)  
- - [Step 2. Ollama + Chat](step-2.md)
+ - [Step 2. Ollama + Chat](step-2.md)  
+ - [Step 3. FastAPI + Steaming + UI](step-2.md)  
