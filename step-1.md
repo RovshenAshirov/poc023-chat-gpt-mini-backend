@@ -1,6 +1,4 @@
-
-
-# Muhitni sozlash
+# Bosqich 1 — Muhitni sozlash
 
 ## 1. Tizimni tekshirish
 

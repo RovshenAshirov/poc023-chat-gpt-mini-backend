@@ -1,5 +1,6 @@
 
-# POC-023 — Bosqich 1: Asosiy Tushunchalar
+# POC-023 - LLM Inference Server — Mini ChatGPT Backend
+# Asosiy Tushunchalar
 > **Maqsad:** LLM inferfeysini tushunish uchun zarur bo'lgan texnik asoslar.
  
 ---
@@ -979,4 +980,5 @@ VRAM            → GPU xotirasi (bizda 4GB)
  - [Step 1. Muhitni Sozlash](step-1.md)  
  - [Step 2. Ollama + Chat](step-2.md)  
  - [Step 3. FastAPI + Steaming + UI](step-3.md)  
- - [Step 3. Benchmark: Ollama vs. vLLM](step-4.md)  
+ - [Step 4. Benchmark: Ollama vs. vLLM](step-4.md)  
+ - [Step 5. RAG Tizimi](step-5.md)  

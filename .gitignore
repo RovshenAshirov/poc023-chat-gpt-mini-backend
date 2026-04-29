@@ -1,3 +1,7 @@
 .idea/
 venv/
+chroma_db/
+uploads/
 gemma3-1b.gguf
+re
+sys

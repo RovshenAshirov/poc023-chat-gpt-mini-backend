@@ -1,9 +1,10 @@
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File
 from fastapi.responses import StreamingResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
+from rag import index_document, query_document
 import httpx
 import json
 
@@ -73,3 +74,13 @@ async def chat_stream(req: ChatRequest):
                         yield "data: [DONE]\n\n"
 
     return StreamingResponse(generate(), media_type="text/event-stream")
+
+
+@app.post("/rag/upload")
+async def rag_upload(file: UploadFile = File(...)):
+    return await index_document(file)
+
+
+@app.post("/rag/query")
+async def rag_query(question: str):
+    return await query_document(question)
